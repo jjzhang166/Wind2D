@@ -5,8 +5,9 @@
 #-------------------------------------------------
 
 QT       += widgets opengl xml multimedia
-
 QT       -= gui
+
+QMAKE_CXXFLAGS += -std=c++0x
 
 TARGET = Core
 TEMPLATE = lib
@@ -16,13 +17,15 @@ DEFINES += CORE_LIBRARY
 SOURCES += \
     texturecache.cpp \
     sprite.cpp \
-    renderengine.cpp
+    renderengine.cpp \
+    node.cpp
 
 HEADERS +=\
         core_global.h \
     texturecache.h \
     sprite.h \
-    renderengine.h
+    renderengine.h \
+    node.h
 
 unix:!symbian {
     maemo5 {
@@ -32,3 +35,6 @@ unix:!symbian {
     }
     INSTALLS += target
 }
+
+RESOURCES += \
+    shaders.qrc

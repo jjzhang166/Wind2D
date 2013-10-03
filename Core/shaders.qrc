@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>shaders/wind2d_fshader.fsh</file>
+        <file>shaders/wind2d_vshader.vsh</file>
+    </qresource>
+</RCC>

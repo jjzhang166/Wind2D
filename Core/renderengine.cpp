@@ -78,7 +78,7 @@ void RenderEngine::update_ortho_matrix()
     orthoMat.ortho(-width_/2, width_/2, -height_/2, height_/2, -100, 100);
     orthoMat.scale(width_/aspect_width_, height_/aspect_height_, 1.0f);
     ortho_matrix_ = orthoMat;
-    shader_program_->setUniformValue("u_mvpMatrix", ortho_matrix_);
+    shader_program_->setUniformValue("u_orthMatrix", ortho_matrix_);
 }
 
 }//end namespace Wind2D
