@@ -3,8 +3,18 @@
 
 #include "core_global.h"
 
+#include <QSizeF>
+#include <QRectF>
+
 namespace Wind2D
 {
+
+struct TexInfo
+{
+    QString path;
+    QSizeF  size;
+    QRectF  texRect;
+};
 
 class WIND_CORE_API TextureCache
 {

@@ -6,7 +6,6 @@
 #include <QSizeF>
 #include <QPoint>
 #include <QMatrix4x4>
-#include <QtOpenGL>
 #include <QVector>
 
 namespace Wind2D
@@ -19,14 +18,8 @@ public:
     explicit Node(QObject *parent = 0);
     virtual ~Node();
 
-    inline const QRectF& position_rect() const { return position_rect_; }
-    inline void set_position_rect(const QRectF& rect) { position_rect_ = rect; }
-
-    inline const QRectF& texcoord_rect() const { return texcoord_rect_; }
-    inline void set_texcoord_rect(const QRectF& rect) { texcoord_rect_ = rect; }
-
-    inline const QPointF& anchor_point() const { return anchor_point_; }
-    inline void set_anchor_point(const QPointF& p) { anchor_point_ = p; }
+    inline const QPointF& position() const { return position_; }
+    inline void set_position(const QPointF& p) { position_ = p; }
 
     inline float depth() const { return depth_; }
     inline void set_depth(float d) { depth_ = d; }
@@ -47,19 +40,18 @@ public:
     inline float rotate() const { return rotate_; }
 
 public:
-    virtual void update(float dt);
+    void update(float dt);
     virtual void draw();
 
 public:
     void add_node(Node* node);
 
 protected:
-    void update_world_matrix();
+    virtual void update_world_matrix();
+    virtual void update_user_data(float dt);
 
 protected:
-    QRectF      position_rect_;
-    QRectF      texcoord_rect_;
-    QPointF     anchor_point_;
+    QPointF     position_;
     float       depth_;
 
     bool        is_transparent_;

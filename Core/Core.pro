@@ -16,16 +16,16 @@ DEFINES += CORE_LIBRARY
 
 SOURCES += \
     texturecache.cpp \
-    sprite.cpp \
     renderengine.cpp \
-    node.cpp
+    node.cpp \
+    sprite.cpp
 
 HEADERS +=\
         core_global.h \
     texturecache.h \
-    sprite.h \
     renderengine.h \
-    node.h
+    node.h \
+    sprite.h
 
 unix:!symbian {
     maemo5 {

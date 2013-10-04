@@ -23,9 +23,10 @@ Node::~Node()
 {
 }
 
-void Node::update(float /*dt*/)
+void Node::update(float dt)
 {
     update_world_matrix();
+    update_user_data(dt);
 }
 
 void Node::draw()
@@ -43,8 +44,7 @@ void Node::update_world_matrix()
 {
     world_matrix_.setToIdentity();
     world_matrix_.scale(scale_.width(), scale_.height());
-    world_matrix_.rotate(position_rect_.x()+anchor_point_.x()*position_rect_.width(),
-                         position_rect_.y()+anchor_point_.y()*position_rect_.height());
+    world_matrix_.rotate(rotate_, position_.x(), position_.y());
     world_matrix_.translate(translate_.x(), translate_.y());
 
     Node* node = this;
@@ -53,6 +53,10 @@ void Node::update_world_matrix()
         world_matrix_ = world_matrix_ * node->parent_->world_matrix_;
         node = node->parent_;
     }
+}
+
+void Node::update_user_data(float /*dt*/)
+{
 }
 
 }//end namesppace Wind2D
