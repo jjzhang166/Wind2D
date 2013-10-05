@@ -19,15 +19,19 @@ SOURCES += \
     renderengine.cpp \
     node.cpp \
     sprite.cpp \
-    layer.cpp
+    layer.cpp \
+    gamewindow.cpp \
+    gameapp.cpp
 
 HEADERS +=\
-        core_global.h \
+    core_global.h \
     texturecache.h \
     renderengine.h \
     node.h \
     sprite.h \
-    layer.h
+    layer.h \
+    gamewindow.h \
+    gameapp.h
 
 unix:!symbian {
     maemo5 {

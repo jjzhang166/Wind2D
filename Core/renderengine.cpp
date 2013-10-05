@@ -3,13 +3,19 @@
 namespace Wind2D
 {
 
+RenderEngine* RenderEngine::shared_render_engine_ = nullptr;
+
 RenderEngine::RenderEngine()
     : shader_program_(nullptr)
-    , alpha_(1.0f)
     , aspect_width_(800.0f)
     , aspect_height_(480.0f)
     , width_(1.0f)
     , height_(1.0f)
+    , loc_worldmat_(0)
+    , loc_texture_(0)
+    , loc_alpha_(0)
+    , loc_iscolor_(0)
+    , loc_color_(0)
 {
     ortho_matrix_.setToIdentity();
 }
@@ -21,6 +27,24 @@ RenderEngine::~RenderEngine()
         shader_program_->release();
         delete shader_program_;
         shader_program_ = nullptr;
+    }
+}
+
+RenderEngine* RenderEngine::shared_engine()
+{
+    if (!shared_render_engine_)
+    {
+        shared_render_engine_ = new RenderEngine();
+    }
+    return shared_render_engine_;
+}
+
+void RenderEngine::release()
+{
+    if (shared_render_engine_)
+    {
+        delete shared_render_engine_;
+        shared_render_engine_ = nullptr;
     }
 }
 
@@ -65,6 +89,13 @@ bool RenderEngine::init_shaders(QGLShaderProgram *program, const QString &vshade
     if (!program.addShaderFromSourceFile(QGLShader::Vertex, vshader))  return false;
     if (!program.addShaderFromSourceFile(QGLShader::Fragment, fshader))  return false;
     if (!program.link()) return false;
+
+    loc_worldmat_ = shader_program_->uniformLocation("u_worldMatrix");
+    loc_texture_ = shader_program_->uniformLocation("u_texture");
+    loc_alpha_ = shader_program_->uniformLocation("u_alpha");
+    loc_iscolor_ = shader_program_->uniformLocation("u_iscolor");
+    loc_color_ = shader_program_->uniformLocation("u_color");
+
     if (!program.bind()) return false;
     setlocale(LC_ALL, "");
 
