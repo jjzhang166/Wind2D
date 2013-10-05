@@ -5,9 +5,7 @@ namespace Wind2D
 
 Node::Node(QObject *parent)
     : QObject(parent)
-    , position_rect_(0.0f, 0.0f, 0.0f, 0.0f)
-    , texcoord_rect_(0.0f, 0.0f, 1.0f, 1.0f)
-    , anchor_point_(0.5f, 0.5f)
+    , position_(0.0f, 0.0f)
     , depth_(0.0f)
     , is_transparent_(false)
     , is_visible_(true)

@@ -1,27 +1,28 @@
-#include "sprite.h"
+#include "layer.h"
 
 namespace Wind2D
 {
 
-Sprite::Sprite(QObject *parent)
+Layer::Layer(QObject *parent)
     : Node(parent)
     , size_(0.0f, 0.0f)
-    , texcoord_rect_(0.0f, 0.0f, 1.0f, 1.0f)
     , anchor_point_(0.5f, 0.5f)
-    , texture_id_(0)
+    , bgcolor_(0 , 0, 0, 255)
 {
 }
 
-Sprite::~Sprite()
-{
-
-}
-
-void Sprite::draw()
+Layer::~Layer()
 {
 }
 
-void Sprite::update_world_matrix()
+bool Layer::init(const QColor &color)
+{
+    bgcolor_ = color;
+
+    return true;
+}
+
+void Layer::update_world_matrix()
 {
     world_matrix_.setToIdentity();
     world_matrix_.scale(scale_.width(), scale_.height());

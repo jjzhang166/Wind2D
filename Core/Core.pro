@@ -18,14 +18,16 @@ SOURCES += \
     texturecache.cpp \
     renderengine.cpp \
     node.cpp \
-    sprite.cpp
+    sprite.cpp \
+    layer.cpp
 
 HEADERS +=\
         core_global.h \
     texturecache.h \
     renderengine.h \
     node.h \
-    sprite.h
+    sprite.h \
+    layer.h
 
 unix:!symbian {
     maemo5 {
